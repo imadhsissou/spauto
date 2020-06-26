@@ -1,0 +1,5 @@
+---
+- name: 42
+  description: CREATED_USING_RESTCONF_#SPAUTO
+  address: 10.0.0.42
+  mask: 255.255.255.255
