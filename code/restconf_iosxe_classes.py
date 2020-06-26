@@ -18,14 +18,14 @@ class TemplateXe:
         return rest_uri, data
 
     def readInterface(self, name):
-        rest_uri = "Cisco-IOS-XE-native:native/interface/Loopback=%s"
+        rest_uri = f"Cisco-IOS-XE-native:native/interface/Loopback={name}"
         data = ""
-        return rest_uri % (name), data
+        return rest_uri, data
 
     def deleteInterface(self, name):
-        rest_uri = "Cisco-IOS-XE-native:native/interface/Loopback=%s"
+        rest_uri = f"Cisco-IOS-XE-native:native/interface/Loopback={name}"
         data = ""
-        return rest_uri % (name), data
+        return rest_uri, data
 
 
 class RequestXe:
@@ -34,7 +34,7 @@ class RequestXe:
         self.port = creds["port"]
         self.user = creds["user"]
         self.passwd = creds["passwd"]
-        self.url = "https://%s:%s/restconf/data/" % (creds["host"], creds["port"])
+        self.url = f"https://{self.host}:{self.passwd}/restconf/data/"
         self.headers = {
             "Content-Type": "application/yang-data+json",
             "Accept": "application/yang-data+json",
@@ -50,10 +50,10 @@ class RequestXe:
                 data=TemplateXeObj[1],
                 verify=False,
             )
-            print("Create Operation Status : %s" % str(response.status_code))
+            print(f"Create Operation Status : {str(response.status_code)}")
         except:
-            print("createRequest() :" + str(sys.exc_info()))
-            print("Create Operation Status : %s" % str(response.status_code))
+            print(f"createRequest() : {str(sys.exc_info())}")
+            print(f"Create Operation Status : {str(response.status_code)}")
             return 1
 
     def readRequest(self, TemplateXeObj):
@@ -67,14 +67,14 @@ class RequestXe:
                 verify=False,
             )
         except:
-            print("readRequest() :" + str(sys.exc_info()))
+            print(f"readRequest() : {str(sys.exc_info())}")
             return 1
         if response.status_code == 200:
             response = response.json()
             responseJSON = json.dumps(response, indent=2, sort_keys=False)
-            print("Read Operation Status : 200 OK\n %s" % responseJSON)
+            print(f"Read Operation Status : 200 OK\n {responseJSON}")
         else:
-            print("Read Operation Status : %s" % str(response.status_code))
+            print(f"Read Operation Status : {str(response.status_code)}")
 
     def deleteRequest(self, TemplateXeObj):
         url = self.url + TemplateXeObj[0]
@@ -86,10 +86,10 @@ class RequestXe:
                 data=TemplateXeObj[1],
                 verify=False,
             )
-            print("Delete Operation Status : %s" % str(response.status_code))
+            print(f"Delete Operation Status : {str(response.status_code)}")
         except:
-            print("deleteRequest() :" + str(sys.exc_info()))
-            print("Delete Operation Status : %s" % str(response.status_code))
+            print(f"deleteRequest() : {str(sys.exc_info())}")
+            print(f"Delete Operation Status : {str(response.status_code)}")
             return 1
 
 
