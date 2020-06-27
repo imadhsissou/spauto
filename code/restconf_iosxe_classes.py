@@ -34,7 +34,7 @@ class RequestXe:
         self.port = creds["port"]
         self.user = creds["user"]
         self.passwd = creds["passwd"]
-        self.url = f"https://{self.host}:{self.passwd}/restconf/data/"
+        self.url = f"https://{self.host}:{self.port}/restconf/data/"
         self.headers = {
             "Content-Type": "application/yang-data+json",
             "Accept": "application/yang-data+json",

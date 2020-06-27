@@ -3,14 +3,12 @@ import yaml
 from restconf_iosxe_classes import TemplateXe, RequestXe, InterfaceXe, AutomateXe
 
 
-template = TemplateXe()
-
 credentials = open("credentials.yml", "r")
 interfaces = open("interfaces.yml", "r")
 
+template = TemplateXe()
 request = RequestXe(yaml.load(credentials, Loader=yaml.FullLoader)[0])
 intf = InterfaceXe(yaml.load(interfaces, Loader=yaml.FullLoader)[0])
-
 instance = AutomateXe()
 
 

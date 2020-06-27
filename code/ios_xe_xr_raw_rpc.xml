@@ -1,0 +1,82 @@
+<!-- IOS XR -->
+
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <capabilities>
+  <capability>urn:ietf:params:netconf:base:1.0</capability>
+  <capability>urn:ietf:params:netconf:base:1.1</capability>
+ </capabilities>
+</hello>]]>]]>
+
+#143 <!--number of bytes that the client is going to send-->
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+ <get-config>
+  <source>
+   <running/>
+  </source>
+ </get-config>
+</rpc>
+## <!--the RPC must end with a couple of “#”-->
+
+#206
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="101">
+ <get>
+  <filter>
+   <ipv4-acl-and-prefix-list xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-acl-oper"/>
+  </filter>
+ </get>
+</rpc>
+##
+
+#958
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <edit-config>
+  <target><candidate/></target>
+  <config xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+   <ipv4-acl-and-prefix-list xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-acl-cfg"  xc:operation="merge">
+    <accesses>
+     <access>
+      <access-list-name>aclv4-1</access-list-name>
+      <access-list-entries>
+       <access-list-entry>
+        <sequence-number>10</sequence-number>
+        <remark>GUEST</remark>
+       </access-list-entry>
+       <access-list-entry>
+        <sequence-number>20</sequence-number>
+        <grant>permit</grant>
+        <source-network>
+         <source-address>172.0.0.0</source-address>
+         <source-wild-card-bits>0.0.255.255</source-wild-card-bits>
+        </source-network>
+       </access-list-entry>
+      </access-list-entries>
+     </access>
+    </accesses>
+   </ipv4-acl-and-prefix-list>
+  </config>
+ </edit-config>
+</rpc>
+##
+
+#111
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="7">
+ <commit>
+  <confirmed/>
+ </commit>
+</rpc>
+##
+
+<!-- IOS XE -->
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>GigabitEthernet1</name>
+        </interface>
+      </interfaces>
+    </filter>
+  </get>
+</rpc>
+]]>]]> <!--the RPC must end with “]]>]]>”-->

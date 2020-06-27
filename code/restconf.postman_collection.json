@@ -1,0 +1,244 @@
+{
+	"info": {
+		"_postman_id": "11d6bce2-fa70-40cd-b353-ca023e583f87",
+		"name": "Cisco IOS-XE RESTCONF 101",
+		"description": "RESTCONF 101 Postman Collection using DevNet IOS-XE Always-on Sandbox (GET, PATCH and DELETE)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RESTCONF on IOS XE - GET the root.",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "C1sco12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "developer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ios-xe-mgmt.cisco.com:9443/.well-known/host-meta",
+					"protocol": "https",
+					"host": [
+						"ios-xe-mgmt",
+						"cisco",
+						"com"
+					],
+					"port": "9443",
+					"path": [
+						".well-known",
+						"host-meta"
+					]
+				},
+				"description": "This request return the root, the main entry point for RESTCONF requests."
+			},
+			"response": []
+		},
+		{
+			"name": "RESTCONF on IOS XE - PATCH example",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "C1sco12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "developer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"definition\":[\r\n      {\r\n         \"name\":\"VRF_DEF_USING_RESTCONF\",\r\n         \"rd\":\"67710:100\",\r\n         \"address-family\":{\r\n            \"ipv4\":{\r\n               \"route-target\":{\r\n                  \"export\":[\r\n                     {\r\n                        \"asn-ip\":\"67710:101\"\r\n                     }\r\n                  ],\r\n                  \"import\":[\r\n                     {\r\n                        \"asn-ip\":\"67710:102\"\r\n                     }\r\n                  ]\r\n               }\r\n            }\r\n         }\r\n      }\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ios-xe-mgmt.cisco.com:9443/restconf/data/Cisco-IOS-XE-native:native/vrf/definition/",
+					"protocol": "https",
+					"host": [
+						"ios-xe-mgmt",
+						"cisco",
+						"com"
+					],
+					"port": "9443",
+					"path": [
+						"restconf",
+						"data",
+						"Cisco-IOS-XE-native:native",
+						"vrf",
+						"definition",
+						""
+					]
+				},
+				"description": "This request creates a VRF definition on Cisco IOS-XE DevNet Always-on Sandbox."
+			},
+			"response": []
+		},
+		{
+			"name": "RESTCONF on IOS XE - GET all vrf definitions",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "C1sco12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "developer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ios-xe-mgmt.cisco.com:9443/restconf/data/Cisco-IOS-XE-native:native/vrf/definition",
+					"protocol": "https",
+					"host": [
+						"ios-xe-mgmt",
+						"cisco",
+						"com"
+					],
+					"port": "9443",
+					"path": [
+						"restconf",
+						"data",
+						"Cisco-IOS-XE-native:native",
+						"vrf",
+						"definition"
+					]
+				},
+				"description": "This request returns all VRF definitions from Cisco IOS-XE DevNet Always-on Sandbox."
+			},
+			"response": []
+		},
+		{
+			"name": "RESTCONF on IOS XE - DELETE vrf definition by name.",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "C1sco12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "developer",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://ios-xe-mgmt.cisco.com:9443/restconf/data/Cisco-IOS-XE-native:native/vrf/definition=\"VRF_DEF_USING_RESTCONF\"",
+					"protocol": "https",
+					"host": [
+						"ios-xe-mgmt",
+						"cisco",
+						"com"
+					],
+					"port": "9443",
+					"path": [
+						"restconf",
+						"data",
+						"Cisco-IOS-XE-native:native",
+						"vrf",
+						"definition=\"VRF_DEF_USING_RESTCONF\""
+					]
+				},
+				"description": "This request deletes the previously created VRF called \"VRF_DEF_USING_RESTCONF\" from Cisco IOS-XE DevNet Always-on Sandbox."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "C1sco12345",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "developer",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3280637b-3e56-4556-be5b-2088455d22b1",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f77f6f67-9bc2-4101-8e1e-c267c53b869e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
