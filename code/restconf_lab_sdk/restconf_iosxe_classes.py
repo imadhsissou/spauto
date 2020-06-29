@@ -1,6 +1,7 @@
 import sys
 import json
 import requests
+from collections import OrderedDict
 from jinja2 import FileSystemLoader, Environment
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
@@ -70,7 +71,8 @@ class RequestXe:
             print(f"readRequest() : {str(sys.exc_info())}")
             return 1
         if response.status_code == 200:
-            response = response.json()
+            # response = response.json()
+            response = json.loads(response.text, object_pairs_hook=OrderedDict)
             responseJSON = json.dumps(response, indent=2, sort_keys=False)
             print(f"Read Operation Status : 200 OK\n {responseJSON}")
         else:
