@@ -71,9 +71,8 @@ class RequestXe:
             print(f"readRequest() : {str(sys.exc_info())}")
             return 1
         if response.status_code == 200:
-            # response = response.json()
             response = json.loads(response.text, object_pairs_hook=OrderedDict)
-            responseJSON = json.dumps(response, indent=2, sort_keys=False)
+            responseJSON = json.dumps(response, indent=2)
             print(f"Read Operation Status : 200 OK\n {responseJSON}")
         else:
             print(f"Read Operation Status : {str(response.status_code)}")
