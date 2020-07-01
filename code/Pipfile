@@ -9,6 +9,9 @@ verify_ssl = true
 black = "*"
 pyang = "*"
 pyyaml = "*"
+requests = "*"
+jinja2 = "*"
+ncclient = "*"
 
 [requires]
 python_version = "3.7"
